@@ -91,4 +91,21 @@ df = df_all[['acousticness', 'danceability', 'energy','instrumentalness',
             'liveness', 'loudness','speechiness','tempo','uri','playlists']]
 
 #Exporting data into a csv
-# df.to_csv (r'\export_dataframe.csv', header=True)
+# df.to_csv(r'export_dataframe.csv', header=True)
+
+# #Let's try on Immigrant Song by Led Zeppelin
+# led_URI = "spotify:artist:36QJpDe2go2KgaRleHCDTp"
+#
+# results = sp.artist_top_tracks(led_URI)
+# for track in results['tracks'][:10]:
+#     print('track    : ' + track['name'] + track['uri'])
+
+#uri of Immigrant Song is: 78lgmZwycJ3nzsdgmPPGNx
+#uri of Bohemian Rhapsody: spotify:track:1AhDOtG9vPSOmsWgNW0BEY
+
+imsong = get_audio_features(["78lgmZwycJ3nzsdgmPPGNx"])
+borap = get_audio_features(["1AhDOtG9vPSOmsWgNW0BEY"])
+
+new_songs = pd.concat([imsong, borap], sort = True, ignore_index=False)
+
+new_songs.to_csv(r'new_songs.csv', header = True)
